@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:WeatherApp"
+             xmlns:weatherVm="clr-namespace:WeatherApp.ViewModels"
+             x:Class="WeatherApp.MainPage">
+    <ContentPage.BindingContext>
+        <weatherVm:WeatherViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout Padding="20,40,20,20">
+            <Entry Text="{Binding Lat, Mode=TwoWay}"
+           Placeholder="Широта"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+            <Entry Text="{Binding Lon, Mode=TwoWay}"
+           Placeholder="Долгота"/>
+            <ActivityIndicator IsRunning="{Binding IsBusy,Mode=TwoWay}"/>
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Город:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.name}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Страна:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.sys.country}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Температура:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.main.temp}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Давление:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.main.pressure}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Влажность:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.main.humidity}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Основной статус:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.weather[0].main}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Статус погоды:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.weather[0].description}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Иконка:"/>
+             </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Image Source="{Binding IconImageString}"
+                   WidthRequest="30"
+                   HeightRequest="30"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <StackLayout HorizontalOptions="StartAndExpand">
+                    <Label Text="Скорость ветра:"/>
+                </StackLayout>
+                <StackLayout HorizontalOptions="EndAndExpand">
+                    <Label Text="{Binding WeatherMainModel.wind.speed}"/>
+                </StackLayout>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal">
+                <Button Text="Получить GPS положение" Clicked="ClickedGPS"/>
+                <StackLayout Orientation="Horizontal">
+                    <Label  x:Name="LatitudeLabel" />
+                    <Label  x:Name="LongitudeLabel" />
+                </StackLayout>
+                
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
